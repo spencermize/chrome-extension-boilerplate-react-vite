@@ -28,7 +28,7 @@ const manifest = deepmerge(
     version: packageJson.version,
     description: '__MSG_extensionDescription__',
     host_permissions: ['<all_urls>'],
-    permissions: ['storage', 'scripting', 'tabs', 'notifications'],
+    permissions: ['storage', 'scripting', 'tabs', 'notifications', 'activeTab'],
     options_page: 'options/index.html',
     background: {
       service_worker: 'background.iife.js',
@@ -38,11 +38,8 @@ const manifest = deepmerge(
       default_popup: 'popup/index.html',
       default_icon: 'icon-34.png',
     },
-    chrome_url_overrides: {
-      newtab: 'new-tab/index.html',
-    },
     icons: {
-      128: 'icon-128.png',
+      128: 'pioneer-icon.png',
     },
     content_scripts: [
       {
@@ -59,9 +56,12 @@ const manifest = deepmerge(
       },
     ],
     devtools_page: 'devtools/index.html',
+    content_security_policy: {
+      extension_pages: "script-src 'self'; object-src 'self'; frame-ancestors 'self' https://localhost:3000;",
+    },
     web_accessible_resources: [
       {
-        resources: ['*.js', '*.css', '*.svg', 'icon-128.png', 'icon-34.png'],
+        resources: ['*.js', '*.css', '*.svg', 'pioneer-icon.png', 'icon-34.png'],
         matches: ['*://*/*'],
       },
     ],

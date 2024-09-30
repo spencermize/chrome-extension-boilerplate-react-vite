@@ -4,8 +4,8 @@
     "message": "Chrome extension boilerplate developed with Vite, React and Typescript"
   },
   "extensionName": {
-    "description": "Extension name",
-    "message": "Chrome extension boilerplate"
+    "description": "PioneerAI",
+    "message": "Use PioneerAI anywhere"
   },
   "toggleTheme": {
     "message": "Toggle theme"

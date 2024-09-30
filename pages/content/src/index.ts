@@ -1,5 +1,18 @@
-import { toggleTheme } from '@src/toggleTheme';
+console.log('Hello from the content script!');
+function logPageContent() {
+  const content = document.body.innerText;
+  console.log('Current page content:', content);
 
-console.log('content script loaded');
+  // Send the content back to the background script or other parts of your extension
+  chrome.runtime.sendMessage({ type: 'PAGE_CONTENT', content });
+}
 
-void toggleTheme();
+// Set up a MutationObserver to watch for changes in the body
+const observer = new MutationObserver(logPageContent);
+observer.observe(document.body, {
+  childList: true,
+  subtree: true,
+});
+
+// Initial content log
+logPageContent();
